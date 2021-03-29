@@ -131,6 +131,11 @@ void WindowManager::InitXGrabs() {
              GrabModeAsync);
   }
 
+  // DWK - found in PR for Apple XQuartz
+  XUngrabKey(dpy_, AnyKey, None, root_window_);
+  XUngrabKey(dpy_, AnyKey, LockMask, root_window_);
+  // DWK
+
   // Define which mouse clicks will send us X events.
   XGrabButton(dpy_, AnyButton, Mod4Mask, root_window_, True,
               ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync,
